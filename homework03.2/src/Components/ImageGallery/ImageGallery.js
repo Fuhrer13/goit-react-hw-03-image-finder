@@ -7,8 +7,13 @@ const ImageGallery = ({ images, toggleModal }) => {
   return (
     <div>
       <ul className={classes.ImageGallery}>
-        {images.map(img => (
-          <ImageGalleryItem {...img} key={img.id} toggleModal={toggleModal} />
+        {images.map(({ id, webformatURL, largeImageURL }) => (
+          <ImageGalleryItem
+            webformatURL={webformatURL}
+            largeImageURL={largeImageURL}
+            key={id}
+            toggleModal={toggleModal}
+          />
         ))}
       </ul>
     </div>

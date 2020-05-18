@@ -39,7 +39,13 @@ export default class App extends Component {
         })),
       )
       .catch(error => this.setState({ error }))
-      .finally(() => this.setState({ loading: false }));
+      .finally(() => {
+        this.setState({ loading: false });
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+        });
+      });
   };
 
   scrollPage = async () => {
