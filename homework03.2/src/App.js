@@ -12,6 +12,7 @@ export default class App extends Component {
     error: null,
     query: '',
     page: 1,
+    value: '',
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -41,17 +42,10 @@ export default class App extends Component {
       .catch(error => this.setState({ error }))
       .finally(() => {
         this.setState({ loading: false });
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth',
-        });
       });
   };
 
   scrollPage = async () => {
-    this.setState(state => ({
-      page: state.page + 1,
-    }));
     await this.getImages();
   };
 
@@ -70,6 +64,7 @@ export default class App extends Component {
         <Searchbar onChangeQuery={this.onSubmitForm} />
         {images.length > 0 && <ImageGallery images={images} />}
         {loading && <Loader />}
+        {error && <h1>Something bad happend</h1>}
 
         {images.length > 0 && !loading && <Button onClick={this.scrollPage} />}
       </>
