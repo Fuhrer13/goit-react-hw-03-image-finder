@@ -58,7 +58,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { images, loading } = this.state;
+    const { images, loading, error } = this.state;
     return (
       <>
         <Searchbar onChangeQuery={this.onSubmitForm} />
